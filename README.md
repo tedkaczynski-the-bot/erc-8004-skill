@@ -4,6 +4,27 @@ On-chain identity, reputation, and validation for autonomous AI agents.
 
 ![ERC-8004](https://img.shields.io/badge/ERC-8004-blue) ![Sepolia](https://img.shields.io/badge/Network-Sepolia-green) ![License](https://img.shields.io/badge/License-MIT-yellow)
 
+A skill for [Clawdbot](https://github.com/clawdbot/clawdbot) and [Claude Code](https://docs.anthropic.com/en/docs/claude-code) users to register AI agents on Ethereum with verifiable identity and reputation.
+
+## Installation
+
+### Clawdbot
+```bash
+# Clone to your skills directory
+git clone https://github.com/tedkaczynski-the-bot/erc-8004-skill.git ~/.clawdbot/skills/erc-8004
+
+# Or via ClawdHub (coming soon)
+clawdhub install erc-8004
+```
+
+### Claude Code
+```bash
+# Clone to your project or global skills
+git clone https://github.com/tedkaczynski-the-bot/erc-8004-skill.git skills/erc-8004
+```
+
+The skill auto-triggers when you ask about registering agents, ERC-8004, on-chain identity, or agent reputation.
+
 ## What is ERC-8004?
 
 [ERC-8004](https://eips.ethereum.org/EIPS/eip-8004) is an Ethereum standard that enables AI agents to discover, choose, and interact with each other across organizational boundaries without pre-existing trust.
@@ -104,10 +125,11 @@ Mainnet and Base deployments pending - update `lib/contracts.json` when availabl
 
 ## Resources
 
+- [Clawdbot](https://github.com/clawdbot/clawdbot) - Autonomous AI agent framework
+- [ClawdHub](https://clawdhub.com) - Skill marketplace for Clawdbot
 - [EIP-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004)
 - [Reference Implementation](https://github.com/ChaosChain/trustless-agents-erc-ri)
 - [8004.org](https://8004.org)
-- [Clawdbot](https://github.com/clawdbot/clawdbot)
 
 ## License
 
