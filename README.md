@@ -2,7 +2,7 @@
 
 On-chain identity, reputation, and validation for autonomous agents on Ethereum.
 
-🚀 **Now live on Ethereum Mainnet!** (January 29, 2026)
+ **Now live on Ethereum Mainnet!** (January 29, 2026)
 
 ## What is ERC-8004?
 
@@ -18,7 +18,7 @@ The protocol provides three lightweight on-chain registries:
 
 ## Contract Addresses
 
-### Ethereum Mainnet ✅
+### Ethereum Mainnet 
 - **Identity Registry:** [`0x8004A169FB4a3325136EB29fA0ceB6D2e539a432`](https://etherscan.io/address/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432)
 - **Reputation Registry:** [`0x8004BAa17C55a88189AE136b182e5fdA19dE9b63`](https://etherscan.io/address/0x8004BAa17C55a88189AE136b182e5fdA19dE9b63)
 
@@ -106,12 +106,12 @@ ERC-8004 supports pluggable trust mechanisms:
 
 ## Resources
 
-- 📜 [EIP-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004)
-- 🌐 [8004.org](https://8004.org) - Official website
-- 💻 [Reference Implementation](https://github.com/erc-8004/erc-8004-contracts)
-- 💬 [Telegram Community](https://t.me/ERC8004)
-- 🛠️ [Builder Program](http://bit.ly/8004builderprogram)
-- 📚 [Awesome ERC-8004](https://github.com/sudeepb02/awesome-erc8004)
+-  [EIP-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004)
+-  [8004.org](https://8004.org) - Official website
+-  [Reference Implementation](https://github.com/erc-8004/erc-8004-contracts)
+-  [Telegram Community](https://t.me/ERC8004)
+-  [Builder Program](http://bit.ly/8004builderprogram)
+-  [Awesome ERC-8004](https://github.com/sudeepb02/awesome-erc8004)
 
 ## Related
 
