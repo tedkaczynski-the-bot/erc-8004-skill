@@ -18,7 +18,7 @@ Commands:
     search <term>       Search agents (requires indexer)
 
 Options:
-    -n, --network NET   Network (sepolia) [default: sepolia]
+    -n, --network NET   Network (mainnet|sepolia) [default: mainnet]
     -h, --help          Show this help
 
 Examples:
@@ -29,7 +29,7 @@ EOF
     exit 0
 }
 
-NETWORK="sepolia"
+NETWORK="mainnet"
 
 # Parse network flag if present
 while [[ $# -gt 0 ]]; do

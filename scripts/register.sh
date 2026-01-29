@@ -13,7 +13,7 @@ Register a new agent on the ERC-8004 Identity Registry.
 
 Options:
     -u, --uri URI       Agent registration URI (IPFS/HTTPS/data:)
-    -n, --network NET   Network (sepolia) [default: sepolia]
+    -n, --network NET   Network (mainnet|sepolia) [default: mainnet]
     -k, --key KEY       Private key (or set PRIVATE_KEY env)
     --dry-run           Simulate without sending transaction
     -h, --help          Show this help
@@ -27,7 +27,7 @@ EOF
 }
 
 URI=""
-NETWORK="sepolia"
+NETWORK="mainnet"
 DRY_RUN=false
 
 while [[ $# -gt 0 ]]; do

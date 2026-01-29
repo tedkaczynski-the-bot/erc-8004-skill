@@ -7,7 +7,7 @@ CONTRACTS_FILE="$SCRIPT_DIR/../lib/contracts.json"
 
 # Load network configuration
 load_network() {
-    local network="${1:-sepolia}"
+    local network="${1:-mainnet}"
     
     if ! command -v jq &>/dev/null; then
         echo "❌ jq required. Install: brew install jq"
