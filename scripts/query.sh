@@ -52,13 +52,13 @@ case "$COMMAND" in
         [[ $# -lt 1 ]] && { echo "Usage: query.sh agent <id>"; exit 1; }
         AGENT_ID="$1"
         
-        echo "🔍 Querying agent $AGENT_ID on $NETWORK..."
+        echo "Querying agent $AGENT_ID on $NETWORK..."
         echo ""
         
         # Check if agent exists by calling ownerOf (reverts if doesn't exist)
         OWNER=$(cast call "$IDENTITY_REGISTRY" "ownerOf(uint256)(address)" "$AGENT_ID" --rpc-url "$RPC_URL" 2>/dev/null || echo "")
         if [[ -z "$OWNER" || "$OWNER" == "0x0000000000000000000000000000000000000000" ]]; then
-            echo "❌ Agent $AGENT_ID does not exist"
+            echo "Agent $AGENT_ID does not exist"
             exit 1
         fi
         
@@ -67,7 +67,7 @@ case "$COMMAND" in
         # Try getAgentWallet if it exists (may not be in all implementations)
         WALLET=$(cast call "$IDENTITY_REGISTRY" "getAgentWallet(uint256)(address)" "$AGENT_ID" --rpc-url "$RPC_URL" 2>/dev/null || echo "")
         
-        echo "📋 Agent #$AGENT_ID"
+        echo "Agent #$AGENT_ID"
         echo "   Owner:  $OWNER"
         if [[ -n "$WALLET" && "$WALLET" != "0x0000000000000000000000000000000000000000" ]]; then
             echo "   Wallet: $WALLET"
@@ -78,11 +78,11 @@ case "$COMMAND" in
             echo "   URI:    (not set)"
         fi
         echo ""
-        echo "🔗 Explorer: $EXPLORER_URL/token/$IDENTITY_REGISTRY?a=$AGENT_ID"
+        echo "Explorer: $EXPLORER_URL/token/$IDENTITY_REGISTRY?a=$AGENT_ID"
         ;;
         
     total)
-        echo "🔍 Checking agent registry on $NETWORK..."
+        echo "Checking agent registry on $NETWORK..."
         echo ""
         
         # The official contracts don't have totalAgents(), so we probe for existence
@@ -103,15 +103,15 @@ case "$COMMAND" in
             fi
         done
         
-        echo "📊 Total registered agents: $COUNT"
-        echo "🔗 Registry: $EXPLORER_URL/address/$IDENTITY_REGISTRY"
+        echo "Total registered agents: $COUNT"
+        echo "Registry: $EXPLORER_URL/address/$IDENTITY_REGISTRY"
         ;;
         
     reputation)
         [[ $# -lt 1 ]] && { echo "Usage: query.sh reputation <agent_id>"; exit 1; }
         AGENT_ID="$1"
         
-        echo "🔍 Querying reputation for agent $AGENT_ID..."
+        echo "Querying reputation for agent $AGENT_ID..."
         echo ""
         
         # Get summary with empty filters
@@ -121,16 +121,16 @@ case "$COMMAND" in
             --rpc-url "$RPC_URL" 2>/dev/null || echo "error")
         
         if [[ "$SUMMARY" == "error" ]]; then
-            echo "⚠️ No reputation data or query failed"
+            echo "No reputation data or query failed"
         else
-            echo "📊 Reputation Summary:"
+            echo "Reputation Summary:"
             echo "   Raw: $SUMMARY"
             # Parse: (uint64 count, int128 summaryValue, uint8 summaryValueDecimals)
         fi
         ;;
         
     search)
-        echo "⚠️ Search requires an indexer (The Graph subgraph)"
+        echo "Search requires an indexer (The Graph subgraph)"
         echo "   For now, iterate through agent IDs manually"
         ;;
         
