@@ -34,7 +34,7 @@
       "function setAgentWallet(uint256 agentId, address newWallet, bytes signature) external",
       "function tokenURI(uint256 agentId) external view returns (string)",
       "function ownerOf(uint256 agentId) external view returns (address)",
-      "function totalAgents() external view returns (uint256)",
+      "function balanceOf(address owner) external view returns (uint256)",
       "function agentExists(uint256 agentId) external view returns (bool)",
       "event Registered(uint256 indexed agentId, string agentURI, address indexed owner)",
       "event URIUpdated(uint256 indexed agentId, string newURI, address indexed updatedBy)"

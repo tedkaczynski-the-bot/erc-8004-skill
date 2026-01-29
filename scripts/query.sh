@@ -84,10 +84,28 @@ case "$COMMAND" in
         ;;
         
     total)
-        echo "🔍 Querying total agents on $NETWORK..."
-        TOTAL=$(cast call "$IDENTITY_REGISTRY" "totalAgents()" --rpc-url "$RPC_URL" | cast --to-dec)
+        echo "🔍 Checking agent registry on $NETWORK..."
         echo ""
-        echo "📊 Total registered agents: $TOTAL"
+        
+        # The official contracts don't have totalAgents(), so we probe for existence
+        # by checking sequential IDs until we hit a non-existent one
+        COUNT=0
+        MAX_CHECK=1000
+        
+        for i in $(seq 1 $MAX_CHECK); do
+            EXISTS=$(cast call "$IDENTITY_REGISTRY" "ownerOf(uint256)" "$i" --rpc-url "$RPC_URL" 2>/dev/null || echo "error")
+            if [[ "$EXISTS" == "error" || "$EXISTS" == "" ]]; then
+                COUNT=$((i - 1))
+                break
+            fi
+            COUNT=$i
+            # Show progress for large counts
+            if (( i % 50 == 0 )); then
+                echo "   Checked $i agents..."
+            fi
+        done
+        
+        echo "📊 Total registered agents: $COUNT"
         echo "🔗 Registry: $EXPLORER_URL/address/$IDENTITY_REGISTRY"
         ;;
         
