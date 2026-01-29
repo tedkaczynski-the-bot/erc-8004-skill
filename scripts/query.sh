@@ -55,26 +55,24 @@ case "$COMMAND" in
         echo "🔍 Querying agent $AGENT_ID on $NETWORK..."
         echo ""
         
-        EXISTS=$(cast call "$IDENTITY_REGISTRY" "agentExists(uint256)" "$AGENT_ID" --rpc-url "$RPC_URL")
-        if [[ "$EXISTS" == "0x0000000000000000000000000000000000000000000000000000000000000000" ]]; then
+        # Check if agent exists by calling ownerOf (reverts if doesn't exist)
+        OWNER=$(cast call "$IDENTITY_REGISTRY" "ownerOf(uint256)(address)" "$AGENT_ID" --rpc-url "$RPC_URL" 2>/dev/null || echo "")
+        if [[ -z "$OWNER" || "$OWNER" == "0x0000000000000000000000000000000000000000" ]]; then
             echo "❌ Agent $AGENT_ID does not exist"
             exit 1
         fi
         
-        OWNER=$(cast call "$IDENTITY_REGISTRY" "ownerOf(uint256)" "$AGENT_ID" --rpc-url "$RPC_URL")
-        OWNER_ADDR=$(echo "$OWNER" | cut -c27-66)
+        URI=$(cast call "$IDENTITY_REGISTRY" "tokenURI(uint256)(string)" "$AGENT_ID" --rpc-url "$RPC_URL" 2>/dev/null || echo "")
         
-        URI_RAW=$(cast call "$IDENTITY_REGISTRY" "tokenURI(uint256)" "$AGENT_ID" --rpc-url "$RPC_URL" 2>/dev/null || echo "")
-        
-        WALLET=$(cast call "$IDENTITY_REGISTRY" "getAgentWallet(uint256)" "$AGENT_ID" --rpc-url "$RPC_URL")
-        WALLET_ADDR=$(echo "$WALLET" | cut -c27-66)
+        # Try getAgentWallet if it exists (may not be in all implementations)
+        WALLET=$(cast call "$IDENTITY_REGISTRY" "getAgentWallet(uint256)(address)" "$AGENT_ID" --rpc-url "$RPC_URL" 2>/dev/null || echo "")
         
         echo "📋 Agent #$AGENT_ID"
-        echo "   Owner:  0x$OWNER_ADDR"
-        echo "   Wallet: 0x$WALLET_ADDR"
-        if [[ -n "$URI_RAW" && "$URI_RAW" != "0x" ]]; then
-            # Decode the URI (it's ABI encoded string)
-            URI=$(cast --to-ascii "$URI_RAW" 2>/dev/null | tr -d '\0' || echo "[encoded]")
+        echo "   Owner:  $OWNER"
+        if [[ -n "$WALLET" && "$WALLET" != "0x0000000000000000000000000000000000000000" ]]; then
+            echo "   Wallet: $WALLET"
+        fi
+        if [[ -n "$URI" && "$URI" != '""' ]]; then
             echo "   URI:    $URI"
         else
             echo "   URI:    (not set)"
