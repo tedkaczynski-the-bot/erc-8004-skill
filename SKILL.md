@@ -1,6 +1,6 @@
 ---
 name: erc-8004
-description: ERC-8004 Trustless Agents - Register, discover, and build reputation for AI agents on Ethereum. Use when registering Ted/unabotter on-chain, querying agent registries, giving/receiving reputation feedback, or interacting with the AI agent trust layer.
+description: ERC-8004 Trustless Agents - Register, discover, and build reputation for AI agents on Ethereum. Use when registering agents on-chain, querying agent registries, giving/receiving reputation feedback, or interacting with the AI agent trust layer.
 ---
 
 # ERC-8004: Trustless Agents
